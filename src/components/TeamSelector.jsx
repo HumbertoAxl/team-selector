@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { Button, Typography, Box, Select, MenuItem, FormControl, InputLabel, CardActions, Grow } from '@mui/material';
+import {
+  Button,
+  Typography,
+  Divider,
+  Box,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  CardActions,
+  Grow,
+} from '@mui/material';
 
 const colors = [
   { value: '#f70000', label: 'Red' },
@@ -64,6 +75,7 @@ const TeamSelector = () => {
           </Select>
         </FormControl>
       </Box>
+      <Divider sx={{ mt: 2 }} />
       <Box
         sx={{
           display: 'flex',
@@ -71,7 +83,7 @@ const TeamSelector = () => {
           alignContent: 'center',
           justifyContent: 'space-evenly',
         }}>
-        <Box sx={{ textAlign: 'center', mt: 2, height: '410px', alignContent: 'center' }}>
+        <Box sx={{ textAlign: 'center', height: '410px', alignContent: 'center' }}>
           {!(team1 && team2) ? (
             <Typography>Select the teams colors</Typography>
           ) : (
@@ -81,27 +93,28 @@ const TeamSelector = () => {
                 return (
                   <Grow in={Boolean(team)} key={`player${index}`} timeout={200}>
                     {/* Should have used a <List> */}
-                      <Box backgroundColor={team} sx={{ borderRadius: '20px', mt: 1 }}>
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            color: team === '#ffffff' ? 'black' : 'white',
-                            outline: team === '#ffffff' && '1px solid black',
-                            borderRadius: 'inherit',
-                          }}>
-                          {currentPlayer - 1 === index ? (
-                            <>👉 You will play for {teamLabel}s 👈</>
-                          ) : (
-                            <>Player {index + 1}</>
-                          )}
-                        </Typography>
-                      </Box>
+                    <Box backgroundColor={team} sx={{ borderRadius: '20px', mt: 1 }}>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: team === '#ffffff' ? 'black' : 'white',
+                          outline: team === '#ffffff' && '1px solid black',
+                          borderRadius: 'inherit',
+                        }}>
+                        {currentPlayer - 1 === index ? (
+                          <>👉 You will play for {teamLabel}s 👈</>
+                        ) : (
+                          <>Player {index + 1}</>
+                        )}
+                      </Typography>
+                    </Box>
                   </Grow>
                 );
               })}
             </>
           )}
         </Box>
+        <Divider sx={{ mt: 1 }} />
         <CardActions sx={{ justifyContent: 'center', mt: 1 }}>
           {currentPlayer < 10 ? (
             <Button

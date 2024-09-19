@@ -2,7 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Header from './components/Header';
 import TeamSelector from './components/TeamSelector';
-import { Box } from '@mui/material/';
+import { Box, Divider } from '@mui/material/';
 
 export default function App() {
   return (
@@ -16,6 +16,9 @@ export default function App() {
         width: '100vw',
         backgroundImage: `url('/assets/futsal-background.png')`,
         minWidth: '375px',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
       }}>
       <Card
         elevation={15}
@@ -24,6 +27,7 @@ export default function App() {
           height: '640px',
         }}>
         <Header />
+        <Divider sx={{ mx: 2 }} />
         <CardContent>
           <TeamSelector />
         </CardContent>
