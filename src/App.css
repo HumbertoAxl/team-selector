@@ -1,0 +1,1026 @@
+:root {
+  --ink: #17211d;
+  --muted: #65726c;
+  --line: #dfe5df;
+  --paper: #f9faf6;
+  --lime: #d8ff56;
+  --green: #173d2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(180deg, rgba(7, 24, 17, 0.67), rgba(7, 20, 15, 0.89)),
+    url('/assets/futsal-background.png') center / cover fixed;
+}
+
+.selector-panel {
+  width: min(100%, 440px);
+  height: min(820px, calc(100dvh - 24px));
+  overflow: hidden;
+  user-select: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+}
+
+.team-selector {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  position: relative;
+  min-height: 86px;
+  padding: 18px 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 88% -20%, rgba(216, 255, 86, 0.22), transparent 42%),
+    linear-gradient(135deg, #1aa564 0%, #0f5132 55%, #0c3a25 100%);
+  box-shadow: 0 4px 14px rgba(8, 30, 20, 0.18);
+}
+
+.brand-mark {
+  width: 43px;
+  height: 43px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+.brand-mark img {
+  width: 26px;
+  height: 26px;
+}
+
+.brand-copy {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 3px;
+  color: #7f8e87;
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.app-header .eyebrow {
+  color: #a9bdb4;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.header-subtitle {
+  margin: 2px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.reset-button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 13px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.reset-button:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.app-body {
+  flex: 1;
+  min-height: 0;
+  padding: 18px 18px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-actions {
+  padding: 12px 18px 18px;
+  flex-shrink: 0;
+}
+
+/* Placeholder keeps the app-actions height consistent during battle animation */
+.app-actions-placeholder {
+  min-height: 60px;
+}
+
+.progress-block {
+  margin-bottom: 16px;
+}
+
+.progress-copy {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.progress-copy strong {
+  color: var(--ink);
+}
+
+.progress-track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e2e7e2;
+}
+
+.progress-track span {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: var(--green);
+  transition: width 280ms ease;
+}
+
+.setup-card {
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(29, 52, 42, 0.05);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.setup-card.is-locked {
+  opacity: 0.74;
+}
+
+.section-heading {
+  margin-bottom: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.98rem;
+  letter-spacing: -0.02em;
+}
+
+.locked-label {
+  padding: 5px 8px;
+  border-radius: 99px;
+  color: #57635d;
+  background: #edf0ed;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.pickers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+}
+
+.team-picker {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.team-picker legend {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  color: #7c8882;
+  font-size: 0.67rem;
+}
+
+.team-picker legend strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.colour-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.colour-swatch {
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 2px solid color-mix(in srgb, var(--swatch) 72%, black);
+  border-radius: 50%;
+  color: #fff;
+  background: var(--swatch);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 300ms ease,
+    border-color 200ms ease,
+    transform 140ms ease,
+    color 200ms ease;
+}
+
+.swatch-check {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.colour-swatch.is-light {
+  color: var(--ink);
+}
+
+.colour-swatch.is-selected {
+  border-color: color-mix(in srgb, var(--swatch) 45%, black);
+  transform: scale(1.06);
+}
+
+.colour-swatch:disabled {
+  cursor: not-allowed;
+}
+
+/* Colour taken: fades to a tint, border stays consistent. */
+.colour-swatch:disabled:not(.is-selected) {
+  background: color-mix(in srgb, var(--swatch) 53%, white);
+  border-color: color-mix(in srgb, var(--swatch) 63%, white);
+  color: rgba(0, 0, 0, 0.45);
+}
+.colour-swatch.is-light:disabled:not(.is-selected) {
+  border-color: color-mix(in srgb, var(--swatch) 72%, black);
+}
+
+/* Lock icon animates in when it mounts. */
+.swatch-lock {
+  animation: lock-in 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes lock-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.versus {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: #66736d;
+  background: #f5f7f4;
+  font-size: 0.58rem;
+  font-weight: 900;
+}
+
+.draw-stage {
+  flex: 1;
+  min-height: 0;
+  margin-top: 14px;
+  display: grid;
+  border-radius: 22px;
+}
+
+.empty-state,
+.ready-state,
+.finished-state {
+  padding: 24px 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ready-state {
+  padding: 24px 20px 20px;
+  gap: 24px;
+}
+
+.finished-state {
+  padding: 24px 20px 16px;
+  overflow-y: auto;
+}
+
+.shirt-icon {
+  width: 68px;
+  height: 68px;
+  margin-bottom: 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 23px;
+  color: var(--green);
+  background: #e9f2ec;
+  transform: rotate(-3deg);
+}
+
+.shirt-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.draw-stage h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 2.35rem;
+  letter-spacing: -0.04em;
+}
+
+.draw-stage p {
+  max-width: 285px;
+  margin: 9px auto 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+.team-preview {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  user-select: none;
+}
+
+.team-preview span,
+.final-matchup span {
+  width: 44px;
+  height: 44px;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(22, 40, 32, 0.18);
+  transform: rotate(-5deg);
+}
+
+.team-preview .light-team,
+.final-matchup .light-team {
+  border: 2px solid #b8b8b8;
+  box-sizing: border-box;
+}
+
+.team-preview span:last-child {
+  transform: rotate(5deg);
+}
+
+
+.team-preview em {
+  color: #849089;
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* ── Battle animation ─────────────────────────────────── */
+.battle-state {
+  position: relative;
+  min-height: 334px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.battle-arena {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  user-select: none;
+}
+
+/* Arena fades out once the flood starts taking over */
+.battle-arena.is-resolving {
+  animation: arena-out 80ms linear 460ms forwards;
+}
+
+@keyframes arena-out {
+  to { opacity: 0; }
+}
+
+.battle-chip {
+  width: 65px;
+  height: 65px;
+  border-radius: 18px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 12px rgba(22, 40, 32, 0.18);
+  flex-shrink: 0;
+}
+
+.battle-vs {
+  color: #849089;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* "vs" fades as soon as resolving starts */
+.battle-vs.is-exiting {
+  animation: vs-out 200ms ease forwards;
+}
+
+@keyframes vs-out {
+  to { opacity: 0; }
+}
+
+/* ── Shake phase: quick, tense jostle before the clash — shape never changes ── */
+@keyframes chip-shake-left {
+  0%, 100% { transform: translateX(0); }
+  22% { transform: translateX(8px); }
+  44% { transform: translateX(-8px); }
+  66% { transform: translateX(10px); }
+  85% { transform: translateX(-5px); }
+}
+
+@keyframes chip-shake-right {
+  0%, 100% { transform: translateX(0); }
+  22% { transform: translateX(-8px); }
+  44% { transform: translateX(8px); }
+  66% { transform: translateX(-10px); }
+  85% { transform: translateX(5px); }
+}
+
+.battle-chip.is-shaking.chip-left  { animation: chip-shake-left  500ms ease-in-out both; }
+.battle-chip.is-shaking.chip-right { animation: chip-shake-right 500ms ease-in-out 50ms both; }
+
+/* ── Resolve phase: winner slides into loser and pushes it off screen ──
+   Pure horizontal translation — shape stays a rounded rectangle throughout.
+   Left wins  → winner slides RIGHT, loser is pushed RIGHT off screen.
+   Right wins → winner slides LEFT,  loser is pushed LEFT  off screen.
+
+   The chips start 54px apart, so contact happens at translateX ±54.
+   Crucially, the winner is still CARRYING SPEED at contact (46%) and the
+   loser launches on the SAME frame — so the hit reads as one connected
+   shove, not "winner stops, then loser leaves". Per-keyframe easing keeps
+   the winner accelerating INTO the loser, then follows through and settles. */
+
+@keyframes push-right {
+  0%   { transform: translateX(0);    animation-timing-function: cubic-bezier(0.45, 0, 0.7, 1); } /* wind up + accelerate */
+  46%  { transform: translateX(54px); animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1); }  /* CONTACT, still moving */
+  70%  { transform: translateX(70px); animation-timing-function: ease-out; }                      /* drives through, overshoots */
+  100% { transform: translateX(62px); }                                                           /* settles at centre */
+}
+
+@keyframes push-left {
+  0%   { transform: translateX(0);     animation-timing-function: cubic-bezier(0.45, 0, 0.7, 1); }
+  46%  { transform: translateX(-54px); animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1); }
+  70%  { transform: translateX(-70px); animation-timing-function: ease-out; }
+  100% { transform: translateX(-62px); }
+}
+
+
+.battle-chip.is-light { border: 2px solid #b8b8b8; }
+
+.battle-chip.is-winner.chip-left  { animation: push-right 460ms linear forwards; }
+.battle-chip.is-winner.chip-right { animation: push-left  460ms linear forwards; }
+
+/* Loser holds until the winner makes contact (46%), then is knocked away
+   FAST from the very first frame of the launch (struck, not creeping). */
+@keyframes shoved-right {
+  0%   { transform: translateX(0);     opacity: 1; animation-timing-function: linear; }
+  46%  { transform: translateX(0);     opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.75, 0.4, 1); } /* snap on impact */
+  70%  { transform: translateX(150px); opacity: 1; animation-timing-function: cubic-bezier(0.4, 0, 0.85, 1); }   /* carries off screen */
+  100% { transform: translateX(560px); opacity: 0; }
+}
+
+@keyframes shoved-left {
+  0%   { transform: translateX(0);      opacity: 1; animation-timing-function: linear; }
+  46%  { transform: translateX(0);      opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.75, 0.4, 1); }
+  70%  { transform: translateX(-150px); opacity: 1; animation-timing-function: cubic-bezier(0.4, 0, 0.85, 1); }
+  100% { transform: translateX(-560px); opacity: 0; }
+}
+
+.battle-chip.chip-exit-right { animation: shoved-right 460ms linear forwards; }
+.battle-chip.chip-exit-left  { animation: shoved-left  460ms linear forwards; }
+
+/* ── Flood: winner expands to fill the card from its settled position ──
+   Both cases settle near centre after the push (~50%), so expand from there. */
+.battle-flood {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  /* Stay fully hidden through the collision — `forwards` keeps this base
+     state during the animation-delay, so nothing shows until the flood
+     actually starts. It then appears exactly as the winning chip settles
+     (same size, position and colour), so the hand-off is seamless. */
+  opacity: 0;
+}
+
+.battle-flood.from-left,
+.battle-flood.from-right {
+  animation: flood-expand 420ms cubic-bezier(0.3, 0, 0.15, 1) 460ms forwards;
+}
+
+@keyframes flood-expand {
+  from { opacity: 1; clip-path: inset(calc(50% - 36px) calc(50% - 36px) calc(50% - 36px) calc(50% - 36px) round 20px); }
+  to   { opacity: 1; clip-path: inset(0% 0% 0% 0% round 22px); }
+}
+
+/* Suppress card-pop when coming from battle; stagger text in instead */
+.reveal-state.from-battle {
+  animation: none;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-state.from-battle .reveal-player { animation: fade-in-up 60ms ease-out 0ms both; }
+.reveal-state.from-battle p              { animation: fade-in-up 60ms ease-out 12ms both; }
+.reveal-state.from-battle h2             { animation: fade-in-up 65ms ease-out 25ms both; }
+.app-actions.from-battle .pass-button  { animation: fade-in-up 200ms ease 60ms both; }
+
+/* All action buttons share one structure (see .continue-button): full-width,
+   60px tall, centred label, and a plain arrow pinned to the right — no box.
+   Colour stays per-button (set further down); only shape/layout is shared. */
+.continue-button,
+.primary-button,
+.secondary-button,
+.pass-button {
+  position: relative;
+  width: 100%;
+  min-height: 60px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 17px;
+  font-size: 1.05rem;
+  font-weight: 850;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform 130ms ease,
+    box-shadow 130ms ease,
+    filter 130ms ease;
+}
+
+.continue-button {
+  color: #fff;
+  background: linear-gradient(180deg, #1d4a37 0%, var(--green) 100%);
+  box-shadow:
+    0 10px 22px rgba(23, 61, 46, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.primary-button {
+  color: #fff;
+  background: var(--green);
+  box-shadow: 0 10px 20px rgba(23, 61, 46, 0.2);
+}
+
+.secondary-button {
+  color: #fff;
+  background: var(--green);
+  box-shadow: 0 10px 20px rgba(23, 61, 46, 0.2);
+}
+
+.pass-button {
+  color: #fff;
+  background: var(--green);
+  box-shadow: 0 10px 20px rgba(23, 61, 46, 0.2);
+}
+
+
+.button-arrow,
+.continue-arrow {
+  position: absolute;
+  right: 20px;
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.continue-button:not(:disabled):hover,
+.primary-button:hover,
+.secondary-button:hover,
+.pass-button:hover {
+  filter: brightness(1.08);
+  box-shadow:
+    0 14px 28px rgba(23, 61, 46, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.continue-button:not(:disabled):active,
+.primary-button:active,
+.secondary-button:active,
+.pass-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 10px rgba(23, 61, 46, 0.26);
+}
+
+
+.reveal-state {
+  position: relative;
+  min-height: 334px;
+  overflow: hidden;
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  color: var(--team-text);
+  background: var(--team-colour);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 16px 30px rgba(22, 40, 32, 0.18);
+  animation: reveal-in 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-state.is-light {
+  box-shadow:
+    inset 0 0 0 1px rgba(22, 40, 32, 0.12),
+    0 16px 30px rgba(22, 40, 32, 0.13);
+}
+
+.reveal-state p,
+.reveal-state h2,
+.reveal-state .kit-number {
+  position: relative;
+}
+
+.reveal-player {
+  position: relative;
+  margin-bottom: 6px;
+  color: inherit;
+  opacity: 0.82;
+  font-size: 2.35rem;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+}
+
+.reveal-state p {
+  margin: 0;
+  color: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.reveal-state h2 {
+  margin-top: 4px;
+  color: inherit;
+  font-size: 2.35rem;
+}
+
+.kit-number {
+  margin: 13px 0 9px;
+  font-size: 4rem;
+  font-weight: 950;
+  letter-spacing: -0.08em;
+  line-height: 0.95;
+  opacity: 0.2;
+}
+
+
+
+
+/* Scrollable recap so players can double-check who's on which team */
+.player-list {
+  width: 100%;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-list li {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: #f5f7f4;
+  text-align: left;
+}
+
+.player-list-swatch {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(19, 34, 27, 0.14);
+}
+
+.player-list-swatch.is-light {
+  box-shadow: 0 0 0 1px rgba(19, 34, 27, 0.22);
+}
+
+.player-list-name {
+  flex: 1;
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.player-list-team {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+
+.final-matchup {
+  width: 100%;
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.final-matchup > div {
+  padding: 13px;
+  display: grid;
+  justify-items: center;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.final-matchup span {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  border-radius: 11px;
+}
+
+.final-matchup strong {
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.final-matchup small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+.secondary-button {
+  margin-top: 12px;
+}
+
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) rotate(-1deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@media (max-width: 370px) {
+  .app-shell {
+    padding: 0;
+  }
+
+  .selector-panel {
+    min-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .app-body {
+    padding: 14px 14px 0;
+  }
+
+  .app-actions {
+    padding: 10px 14px 14px;
+  }
+
+  .app-header {
+    padding-inline: 16px;
+  }
+
+  .setup-card {
+    padding: 13px;
+  }
+
+  .reveal-state,
+  .battle-state {
+    min-height: 310px;
+  }
+}
+
+@media (min-width: 700px) {
+  .selector-panel {
+    min-height: 780px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+.setup-screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.setup-screen > h2 {
+  margin: 4px 0 8px;
+  color: var(--ink);
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.setup-subtitle {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.setup-team-rows {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Card per team */
+.setup-screen .team-picker {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #e8ede8;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.picker-label {
+  color: var(--ink);
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Swatch row inside card */
+.setup-screen .colour-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.setup-screen .colour-swatch {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+}
+
+.setup-screen .swatch-check {
+  font-size: 1.15rem;
+}
+
+/* Hint row above button */
+.setup-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #f0f7f3;
+}
+
+.hint-icon {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--green);
+  background: #d5ede1;
+}
+
+.setup-hint p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.setup-hint strong {
+  color: var(--ink);
+}
+
+.continue-button {
+  margin-top: 12px;
+}
+
+.continue-button:disabled {
+  color: #89928e;
+  background: #e1e5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.draw-screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.draw-screen .draw-stage {
+  margin-top: 0;
+}
+
+@media (max-width: 360px) {
+  .setup-screen .team-picker {
+    padding: 14px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .picker-label {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .setup-screen .colour-options {
+    gap: 6px;
+  }
+}
